@@ -36,8 +36,26 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
+async function getInformation() {
+  console.log(process.env);
+  if (process.env.USE_DEBUG_DATA)
+    return {
+      title: process.env.TITLE,
+      description: process.env.DESCRIPTION,
+      usage: process.env.USAGE,
+      contributing: process.env.CONTRIBUTING,
+      tests: process.env.TESTS,
+      license: process.env.LICENSE,
+      "github-name": process.env.GITHUB_NAME,
+      email: process.env.EMAIL,
+    };
+  return await inquirer.prompt(questions);
+}
+
 // TODO: Create a function to initialize app
-function init() {}
+async function init() {
+  const answers = await getInformation();
+}
 
 // Function call to initialize app
 init();
