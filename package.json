@@ -1,0 +1,24 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "author": "Andrew Shoener",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashoener/readme-generator.git"
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "bugs": {
+    "url": "https://github.com/ashoener/readme-generator/issues"
+  },
+  "description": "To install dependencies:",
+  "homepage": "https://github.com/ashoener/readme-generator#readme",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module"
+}
