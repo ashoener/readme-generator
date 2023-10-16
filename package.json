@@ -9,7 +9,8 @@
   "main": "index.js",
   "module": "index.js",
   "dependencies": {
-    "inquirer": "8.2.4"
+    "inquirer": "8.2.4",
+    "inquirer-fuzzy-path": "^2.3.0"
   },
   "devDependencies": {
     "bun-types": "latest"

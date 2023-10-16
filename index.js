@@ -1,5 +1,11 @@
 // TODO: Include packages needed for this application
 import inquirer from "inquirer";
+import fuzzyPath from "inquirer-fuzzy-path";
+import fs from "fs/promises";
+import generateMarkdown from "./utils/generateMarkdown";
+import path from "path";
+
+inquirer.registerPrompt("fuzzypath", fuzzyPath);
 
 // TODO: Create an array of questions for user input
 /**
@@ -31,14 +37,25 @@ const questions = [
     name: "email",
     message: "What is your email address?",
   },
+  {
+    name: "save-location",
+    message: "Finally, where should I save the README to?",
+    type: "fuzzypath",
+    itemType: "directory",
+    rootPath: "./",
+    default: "examples",
+    excludePath: (nodePath) =>
+      nodePath.startsWith("node_modules") || nodePath.startsWith(".git"),
+  },
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+async function writeToFile(fileName, data) {
+  fs.writeFile("");
+}
 
 async function getInformation() {
-  console.log(process.env);
-  if (process.env.USE_DEBUG_DATA)
+  if (process.env.USE_DEBUG_DATA === "true")
     return {
       title: process.env.TITLE,
       description: process.env.DESCRIPTION,
@@ -46,8 +63,9 @@ async function getInformation() {
       contributing: process.env.CONTRIBUTING,
       tests: process.env.TESTS,
       license: process.env.LICENSE,
-      "github-name": process.env.GITHUB_NAME,
+      githubName: process.env.GITHUB_NAME,
       email: process.env.EMAIL,
+      saveLocation: process.env.SAVE_LOCATION,
     };
   return await inquirer.prompt(questions);
 }
@@ -55,6 +73,12 @@ async function getInformation() {
 // TODO: Create a function to initialize app
 async function init() {
   const answers = await getInformation();
+  const readmeData = generateMarkdown(answers);
+  await fs.writeFile(
+    path.resolve(import.meta.dir, answers.saveLocation, "README.md"),
+    readmeData
+  );
+  console.log("Success! Your README.md has been generated.");
 }
 
 // Function call to initialize app
