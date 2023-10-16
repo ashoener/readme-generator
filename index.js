@@ -1,11 +1,13 @@
 // TODO: Include packages needed for this application
 import inquirer from "inquirer";
 import fuzzyPath from "inquirer-fuzzy-path";
+import autocompletePrompt from "inquirer-autocomplete-prompt";
 import fs from "fs/promises";
 import generateMarkdown from "./utils/generateMarkdown";
 import path from "path";
 
 inquirer.registerPrompt("fuzzypath", fuzzyPath);
+inquirer.registerPrompt("autocomplete", autocompletePrompt);
 
 // TODO: Create an array of questions for user input
 /**
@@ -26,8 +28,20 @@ const questions = [
   {
     name: "license",
     message: "What license would you like to use?",
-    choices: ["MIT", "ISC"], // TODO: Add more common license types
-    type: "list",
+    async source(answers, input) {
+      const choices = [
+        "MIT",
+        "ISC",
+        "GNU AGPLv3",
+        "GNU GPLv3",
+        "GNU LGPLv3",
+        "Mozilla Public License 2.0",
+        "Apache License 2.0",
+      ];
+      if (!input) return choices;
+      return choices.filter((c) => c.includes(input.toUpperCase()));
+    }, // TODO: Add more common license types
+    type: "autocomplete",
   },
   {
     name: "github-name",
