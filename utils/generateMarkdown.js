@@ -6,13 +6,6 @@ function renderLicenseBadge(license) {
   return "";
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (license) return `[LICENSE](/LICENSE)`;
-  return "";
-}
-
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
@@ -66,9 +59,9 @@ ${data.tests}
 
 ## Questions
 
-You can contact me on [GitHub](${data.github}) or by [email](mailto:${
-    data.email
-  }).
+If you have any questions, you may contact me via [GitHub](${
+    data.github
+  }) or by [email](mailto:${data.email}).
 
 ${renderLicenseSection(data.license)}
 `;
