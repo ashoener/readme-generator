@@ -2,6 +2,7 @@
   "name": "readme-generator",
   "version": "1.0.0",
   "author": "Andrew Shoener",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ashoener/readme-generator.git"
@@ -23,6 +24,10 @@
   "homepage": "https://github.com/ashoener/readme-generator#readme",
   "license": "MIT",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "readme-generator": "./index.js"
   }
 }

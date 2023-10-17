@@ -1,9 +1,9 @@
-// TODO: Include packages needed for this application
+#!/usr/bin/env node
 import inquirer from "inquirer";
 import fuzzyPath from "inquirer-fuzzy-path";
 import autocompletePrompt from "inquirer-autocomplete-prompt";
 import fs from "fs/promises";
-import generateMarkdown from "./utils/generateMarkdown";
+import generateMarkdown from "./utils/generateMarkdown.js";
 import path from "path";
 
 inquirer.registerPrompt("fuzzypath", fuzzyPath);
@@ -67,11 +67,6 @@ const questions = [
   },
 ];
 
-// TODO: Create a function to write README file
-async function writeToFile(fileName, data) {
-  fs.writeFile("");
-}
-
 async function getInformation() {
   if (process.env.USE_DEBUG_DATA === "true")
     return {
@@ -89,7 +84,6 @@ async function getInformation() {
   return await inquirer.prompt(questions);
 }
 
-// TODO: Create a function to initialize app
 async function init() {
   const answers = await getInformation();
   const readmeData = generateMarkdown(answers);
