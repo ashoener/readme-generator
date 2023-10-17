@@ -15,19 +15,30 @@ inquirer.registerPrompt("autocomplete", autocompletePrompt);
  */
 const questions = [
   { name: "title", message: "What is the title of your project?" },
-  { name: "description", message: "Enter a description for your project" },
+  {
+    name: "description",
+    message: "Enter a description for your project",
+    type: "editor",
+  },
   {
     name: "installation",
     message: "Enter installation information for your project",
+    type: "editor",
   },
-  { name: "usage", message: "Enter usage information for your project" },
+  {
+    name: "usage",
+    message: "Enter usage information for your project",
+    type: "editor",
+  },
   {
     name: "contributing",
     message: "Enter information about how to contribute to your project",
+    type: "editor",
   },
   {
     name: "tests",
     message: "Enter information about how to run tests for your project",
+    type: "editor",
   },
   {
     name: "license",
