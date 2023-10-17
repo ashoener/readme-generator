@@ -12,8 +12,16 @@ function renderLicenseSection(license) {
   if (license)
     return `## License
 
-This project is covered under the ${license} license. You may view it [here](/LICENSE).
+This project is covered under the ${license} license. You may view it ${renderLicenseLink(
+      license,
+      "here"
+    )}.
 `;
+  return "";
+}
+
+function renderLicenseLink(license, text) {
+  if (license) return `[${text}](/LICENSE)`;
   return "";
 }
 
