@@ -16,6 +16,10 @@ inquirer.registerPrompt("autocomplete", autocompletePrompt);
 const questions = [
   { name: "title", message: "What is the title of your project?" },
   { name: "description", message: "Enter a description for your project" },
+  {
+    name: "installation",
+    message: "Enter installation information for your project",
+  },
   { name: "usage", message: "Enter usage information for your project" },
   {
     name: "contributing",
@@ -73,6 +77,7 @@ async function getInformation() {
     return {
       title: process.env.TITLE,
       description: process.env.DESCRIPTION,
+      installation: process.env.INSTALLATION,
       usage: process.env.USAGE,
       contributing: process.env.CONTRIBUTING,
       tests: process.env.TESTS,
