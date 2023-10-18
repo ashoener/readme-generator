@@ -33,7 +33,7 @@ npm link
 
 ## Usage
 
-Run the command `readme-generator` in your preferred terminal, and follow the prompts.
+Run the command `readme-generator` in your preferred terminal, and follow the prompts. You may also watch a video tutorial [here](https://youtu.be/-S6ytDhcYOY).
 
 ## How to Contribute
 
