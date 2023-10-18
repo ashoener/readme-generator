@@ -73,7 +73,6 @@ const questions = [
     type: "fuzzypath",
     itemType: "directory",
     rootPath: "./",
-    default: "examples",
     excludePath: (nodePath) =>
       nodePath.startsWith("node_modules") || nodePath.startsWith(".git"),
   },
@@ -100,11 +99,7 @@ async function init() {
   const answers = await getInformation();
   const readmeData = generateMarkdown(answers);
   await fs.writeFile(
-    path.resolve(
-      path.dirname(fileURLToPath(import.meta.url)),
-      answers.saveLocation,
-      "README.md"
-    ),
+    path.resolve(process.cwd(), answers.saveLocation, "README.md"),
     readmeData
   );
   console.log("Success! Your README.md has been generated.");
