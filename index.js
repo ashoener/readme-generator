@@ -76,6 +76,7 @@ const questions = [
   },
 ];
 
+// Prompt the user for information, or use environment data instead
 async function getInformation() {
   if (process.env.USE_DEBUG_DATA === "true")
     return {
@@ -94,8 +95,11 @@ async function getInformation() {
 }
 
 async function init() {
+  // Retrieve answers
   const answers = await getInformation();
+  // Generate the markdown
   const readmeData = generateMarkdown(answers);
+  // Save the file to the input location
   await fs.writeFile(
     path.resolve(process.cwd(), answers.saveLocation, "README.md"),
     readmeData
