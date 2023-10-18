@@ -4,13 +4,11 @@ import fuzzyPath from "inquirer-fuzzy-path";
 import autocompletePrompt from "inquirer-autocomplete-prompt";
 import fs from "fs/promises";
 import generateMarkdown from "./utils/generateMarkdown.js";
-import { fileURLToPath } from "url";
 import path from "path";
 
 inquirer.registerPrompt("fuzzypath", fuzzyPath);
 inquirer.registerPrompt("autocomplete", autocompletePrompt);
 
-// TODO: Create an array of questions for user input
 /**
  * @type {import("inquirer").QuestionCollection<import("inquirer").Answers>}
  */
@@ -56,7 +54,7 @@ const questions = [
       ];
       if (!input) return choices;
       return choices.filter((c) => c.includes(input.toUpperCase()));
-    }, // TODO: Add more common license types
+    },
     type: "autocomplete",
   },
   {
