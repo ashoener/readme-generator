@@ -4,6 +4,7 @@ import fuzzyPath from "inquirer-fuzzy-path";
 import autocompletePrompt from "inquirer-autocomplete-prompt";
 import fs from "fs/promises";
 import generateMarkdown from "./utils/generateMarkdown.js";
+import { fileURLToPath } from "url";
 import path from "path";
 
 inquirer.registerPrompt("fuzzypath", fuzzyPath);
@@ -59,7 +60,7 @@ const questions = [
     type: "autocomplete",
   },
   {
-    name: "github-name",
+    name: "githubName",
     message: "What is your GitHub username?",
   },
   {
@@ -67,7 +68,7 @@ const questions = [
     message: "What is your email address?",
   },
   {
-    name: "save-location",
+    name: "saveLocation",
     message: "Finally, where should I save the README to?",
     type: "fuzzypath",
     itemType: "directory",
@@ -99,7 +100,11 @@ async function init() {
   const answers = await getInformation();
   const readmeData = generateMarkdown(answers);
   await fs.writeFile(
-    path.resolve(import.meta.dir, answers.saveLocation, "README.md"),
+    path.resolve(
+      path.dirname(fileURLToPath(import.meta.url)),
+      answers.saveLocation,
+      "README.md"
+    ),
     readmeData
   );
   console.log("Success! Your README.md has been generated.");
